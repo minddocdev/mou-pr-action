@@ -1,0 +1,46 @@
+name: "main"
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - ".github/workflows/main.yaml"
+      - "package.json"
+      - "src/**"
+      - "tests/*"
+      - "tsconfig.json"
+      - "tslint.json"
+  pull_request:
+    paths:
+      - ".github/workflows/main.yaml"
+      - "package.json"
+      - "src/**"
+      - "tests/*"
+      - "tsconfig.json"
+      - "tslint.json"
+
+jobs:
+  unit_test:
+    name: unit test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v1.2.0
+      - name: Lint code
+        run: yarn lint
+      - name: Test code
+        run: yarn test
+  integration_test:
+    if: github.ref == 'refs/heads/master'
+    name: integration test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v1.2.0
+      - name: Check commits
+        uses: minddocdev/mou-pr-action@master
+        with:
+          commitTitleLength: 72
+          conventionalCommits: true
+          token: ${{ github.token }}

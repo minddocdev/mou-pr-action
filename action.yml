@@ -1,0 +1,50 @@
+name: "MOU PR"
+description: "Check PR style and its commits"
+author: "MindDoc Health GmbH"
+branding:
+  icon: "cloud"
+  color: "blue"
+inputs:
+  commitTitleLength:
+    description: The maximum line length for the commit title. e.g. `72`.
+    required: false
+  commitTitleRegex:
+    description: >-
+      The regex that should validate the commit title.
+      e.g. `'^(?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-]*)\))?\: (.*)$'`
+    required: false
+  conventionalCommits:
+    description: Check for conventional style commits. See https://www.conventionalcommits.org/
+    required: false
+    default: "false"
+  labels:
+    description: >-
+      The YAML or JSON map of labels with the list of file matchers.
+      e.g:
+        label1:
+          - example/**/*
+    required: false
+  prBodyRegex:
+    description: >-
+      The regex that should validate the PR body.
+      e.g. `'^.+(Closes|Fixes): \[(JIRA-[0-9])\]$'`
+    required: false
+  prTitleRegex:
+    description: >-
+      The regex that should validate the PR title.
+      e.g. `'\[(JIRA-[0-9]+|CHORE|HOTFIX)\] [A-Za-z0-9]+$'`
+    required: false
+  squashAndMergeBranch:
+    description: >-
+      Enable linting for squash and merge commits into the specified branch (e.g. `master`).
+      The title of the commit will be verified with the given PR title rules, while the
+      body of the squashed commit will be split per line and verified individually with
+      the given commit rules.
+      This option will only run for `push` events.
+    required: false
+  token:
+    description: "The token to access Github's API"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/run.js"
