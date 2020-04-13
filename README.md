@@ -8,26 +8,85 @@ The `mou-pr-action` commits for `mou-pr-action`.
 
 ## Usage
 
-Create a step on `pull_request` or `push` events.
+Create a step on `pull_request` or `push` events. This action can be run in
+different ways.
+
+To check commit messages (PR operations will be ignored):
 
 ```yaml
 name: 'commit'
 "on":
-  pull_request:
   push:
 jobs:
   check:
     name: check commit style
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout git repository
-        uses: actions/checkout@v1.2.0
-      - name: Check commits
-        uses: minddocdev/mou-pr-action@master
-        with:
-          commitTitleLength: 72
-          conventionalCommits: true
-          token: ${{ github.token }}
+    - name: Checkout git repository
+      uses: actions/checkout@v1.2.0
+    - name: Check commits
+      uses: minddocdev/mou-pr-action@master
+      with:
+        commitTitleLength: 72
+        conventionalCommits: true
+        token: ${{ github.token }}
+```
+
+To check PR style and label based on file globs
+
+```yaml
+name: 'pr'
+"on":
+  pull_request:
+jobs:
+  check:
+    name: check PR style
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v1.2.0
+    - name: Check PR style and add PR labels
+      uses: minddocdev/mou-pr-action@master
+      with:
+        prTitleLength: 50
+        prTitleRegex: \[(JIRA-[0-9]+|CHORE|HOTFIX)\] [A-Za-z0-9]+$'
+        labels: |
+          "build":
+          - "**/Makefile"
+          - "**/tsconfig.json"
+          - "**/tsconfig.*.json"
+          - "**/vue.config.js"
+          "ci": ".github/**"
+```
+
+Both operations can do at the same time if both events are defined in the same workflow:
+
+```yaml
+name: 'pr'
+"on":
+  pull_request:
+  push:
+jobs:
+  check:
+    name: check PR and commit style
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v1.2.0
+    - name: Check commit/PR style and add PR labels
+      uses: minddocdev/mou-pr-action@master
+      with:
+        commitTitleLength: 72
+        commitTitleRegex: '^(?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-]*)\))?\: (.*)$'
+        prTitleLength: 50
+        prTitleRegex: '\[(JIRA-[0-9]+|CHORE|HOTFIX)\] [A-Za-z0-9]+$'
+        labels: |
+          "build":
+          - "**/Makefile"
+          - "**/tsconfig.json"
+          - "**/tsconfig.*.json"
+          - "**/vue.config.js"
+          "ci": ".github/**"
 ```
 
 ## Options
@@ -86,16 +145,6 @@ e.g. `'^.+(Closes|Fixes): \[(JIRA-[0-9])\]$'`
 - required: false
 - description: The regex that should validate the PR title.
 e.g. `'\[(JIRA-[0-9]+|CHORE|HOTFIX)\] [A-Za-z0-9]+$'`
-
-#### `squashAndMergeBranch`
-
-- name: squashAndMergeBranch
-- required: false
-- default: `<app> <version>`
-- description: Enable linting for squash and merge commits into the specified branch
-(e.g. `master`). The title of the commit will be verified with the given PR title rules, while the
-body of the squashed commit will be split per line and verified individually with the given
-commit rules. This option will only run for `push` events.
 
 #### `token`
 

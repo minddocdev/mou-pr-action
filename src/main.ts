@@ -3,7 +3,7 @@ import { context, GitHub } from '@actions/github';
 import * as yaml from 'js-yaml';
 
 import { labelPR } from './lib/labeler';
-import { checkCommits, checkPR, checkSquashCommits } from './lib/style';
+import { checkCommits, checkPR } from './lib/style';
 
 function getLabelerConfig() {
   const rawLabels = core.getInput('labels', { required: false });
@@ -46,20 +46,9 @@ export async function run() {
       case 'push': {
         const commitTitleLength = core.getInput('commitTitleLength', { required: false });
         const commitTitleRegex = core.getInput('commitTitleRegex', { required: false });
-        const squashAndMergeBranch = core.getInput('squashAndMergeBranch', { required: false });
         const conventionalCommits =
           core.getInput('conventionalCommits', { required: false }) === 'true' || false;
-        if (squashAndMergeBranch && context.payload.ref === `refs/heads/${squashAndMergeBranch}`) {
-          checkSquashCommits(
-            conventionalCommits,
-            commitTitleLength,
-            commitTitleRegex,
-            prTitleLength,
-            prTitleRegex,
-          );
-        } else {
-          checkCommits(conventionalCommits, commitTitleLength, commitTitleRegex);
-        }
+        checkCommits(conventionalCommits, commitTitleLength, commitTitleRegex);
         break;
       }
       case 'pull_request': {

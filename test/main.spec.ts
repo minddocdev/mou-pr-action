@@ -2,7 +2,7 @@ import { getInput, setFailed } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { labelPR } from '@minddocdev/mou-pr-action/lib/labeler';
-import { checkCommits, checkPR, checkSquashCommits } from '@minddocdev/mou-pr-action/lib/style';
+import { checkCommits, checkPR } from '@minddocdev/mou-pr-action/lib/style';
 
 import { run } from '@minddocdev/mou-pr-action/main';
 
@@ -23,7 +23,7 @@ describe('run', () => {
   const prTitleRegex = '[(JIRA-[0-9]+|CHORE|HOTFIX)] [A-Za-z0-9]+$';
   // Github token
   const token = 'faketoken';
-  const mockInput = (mockLabels = labels, squashAndMergeBranch?: string) => {
+  const mockInput = (mockLabels = labels) => {
     (getInput as jest.Mock).mockImplementation((name: string) => {
       switch (name) {
         case 'commitTitleLength':
@@ -38,8 +38,6 @@ describe('run', () => {
           return prTitleLength;
         case 'prTitleRegex':
           return prTitleRegex;
-        case 'squashAndMergeBranch':
-          return squashAndMergeBranch;
         case 'token':
           return token;
         default:
@@ -48,39 +46,16 @@ describe('run', () => {
     });
   };
 
-  describe('push event', () => {
-    beforeEach(() => { context.eventName = 'push'; });
+  test('push event', async () => {
+    context.eventName = 'push';
+    mockInput();
 
-    test('without squash and merge branch', async () => {
-      mockInput();
+    await run();
 
-      await run();
-
-      expect(checkCommits).toBeCalledWith(false, commitTitleLength, commitTitleRegex);
-      expect(checkSquashCommits).not.toBeCalled();
-      expect(labelPR).not.toBeCalled();
-      expect(checkPR).not.toBeCalled();
-      expect(setFailed).not.toBeCalled();
-    });
-
-    test('with squash and merge branch', async () => {
-      context.payload.ref = 'refs/heads/master';
-      mockInput('', 'master');
-
-      await run();
-
-      expect(checkCommits).not.toBeCalled();
-      expect(checkSquashCommits).toBeCalledWith(
-        false,
-        commitTitleLength,
-        commitTitleRegex,
-        prTitleLength,
-        prTitleRegex,
-      );
-      expect(labelPR).not.toBeCalled();
-      expect(checkPR).not.toBeCalled();
-      expect(setFailed).not.toBeCalled();
-    });
+    expect(checkCommits).toBeCalledWith(false, commitTitleLength, commitTitleRegex);
+    expect(labelPR).not.toBeCalled();
+    expect(checkPR).not.toBeCalled();
+    expect(setFailed).not.toBeCalled();
   });
 
   test('pr event', async () => {
@@ -93,7 +68,6 @@ describe('run', () => {
     await run();
 
     expect(checkCommits).not.toBeCalled();
-    expect(checkSquashCommits).not.toBeCalled();
     expect(labelPR).toBeCalledWith(expect.any(GitHub), labelGlobs);
     expect(checkPR).toBeCalledWith(prBodyRegex, prTitleLength, prTitleRegex);
     expect(setFailed).not.toBeCalled();

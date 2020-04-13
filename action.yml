@@ -37,14 +37,6 @@ inputs:
       The regex that should validate the PR title.
       e.g. `'\[(JIRA-[0-9]+|CHORE|HOTFIX)\] [A-Za-z0-9]+$'`
     required: false
-  squashAndMergeBranch:
-    description: >-
-      Enable linting for squash and merge commits into the specified branch (e.g. `master`).
-      The title of the commit will be verified with the given PR title rules, while the
-      body of the squashed commit will be split per line and verified individually with
-      the given commit rules.
-      This option will only run for `push` events.
-    required: false
   token:
     description: "The token to access Github's API"
     required: true

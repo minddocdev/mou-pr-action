@@ -3,7 +3,7 @@ import { context } from '@actions/github';
 
 function validateConventionalCommit(message: string) {
   // eslint-disable-next-line no-useless-escape
-  const match = /^(\w*)(\(([\w\$\.\*/-]+)\))?!?\: (.*)$/.exec(message);
+  const match = /^(\w*)(\(([\w\$\.\*/-]+)\))?!?\: (.*)$/gm.exec(message);
   if (!match) {
     throw new Error(`Commit message "${message}" does not match "<type>(<scope>): <subject>"`);
   }
@@ -57,7 +57,7 @@ function checkCommit(
   if (conventionalCommits) {
     validateConventionalCommit(message);
   }
-  const title = message.split('/n')[0];
+  const title = message.split('\n')[0];
   if (commitTitleLength && title.length > parseInt(commitTitleLength, 10)) {
     throw new Error(`Commit title "${title}" exceeds "${commitTitleLength}" character length`);
   }
@@ -73,29 +73,12 @@ export function checkCommits(conventionalCommits: boolean, commitTitleLength?: s
     return;
   }
 
-  commits.forEach(({ message }) =>
-    checkCommit(message, conventionalCommits, commitTitleLength, commitTitleRegex));
-}
-
-export function checkSquashCommits(
-  conventionalCommits: boolean,
-  commitTitleLength?: string,
-  commitTitleRegex?: string,
-  prTitleLength?: string,
-  prTitleRegex?: string,
-) {
-  const { commits } = context.payload;
-  if (!commits) {
-    return;
-  }
-
   commits.forEach(({ message }) => {
+    checkCommit(message, conventionalCommits, commitTitleLength, commitTitleRegex);
     // Detect if commit is a Github squash
     if (/.* \(#[0-9]+\)\n+(\* .*\n*)+/gm.test(message)) {
+      // Verify that all body lines are valid commits
       const messageLines = message.split('* ');
-      // Verify commit title to match PR title regex and expected Github squash
-      checkPRTitle(messageLines[0].split(' ('), prTitleLength, prTitleRegex);
-      // Verify commit titles in body
       messageLines
         .slice(1)
         .forEach(messageLine =>
@@ -106,9 +89,7 @@ export function checkSquashCommits(
             commitTitleRegex,
           ),
         );
-    } else {
-      throw new Error(`Commit "${message}" does not seem to be a Github squash.`);
+      core.info(`Squashed commit OK: "${message}"`);
     }
-    core.info(`Squashed commit OK: "${message}"`);
   });
 }

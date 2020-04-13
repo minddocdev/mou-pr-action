@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { context } from '@actions/github';
 
-import { checkCommits, checkPR, checkSquashCommits } from '@minddocdev/mou-pr-action/lib/style';
+import { checkCommits, checkPR } from '@minddocdev/mou-pr-action/lib/style';
 
 jest.mock('@actions/github', () => ({
   context: {
@@ -144,59 +144,13 @@ describe('style', () => {
         expect(core.info).not.toBeCalled();
       });
     });
-  });
-
-  describe('check squash commits', () => {
-    test('payload is not commit', () => {
-      context.payload = {};
-      checkSquashCommits(false, undefined, undefined, undefined, undefined);
-      expect(core.info).not.toBeCalled();
-    });
-
-    test('commits are no github squash', () => {
-      const message = '[HOTFIX] Fix auth\n\n* feat(auth): set new invite mechanism\n';
-      context.payload = {
-        commits: [{ message }],
-      };
-      expect(() =>
-        checkSquashCommits(false, undefined, undefined, undefined, undefined),
-      ).toThrowError(`Commit "${message}" does not seem to be a Github squash.`);
-      expect(core.info).not.toBeCalled();
-    });
-
-    test('commits are github squash that match PR title regex', () => {
-      context.payload = {
-        commits: [
-          {
-            message:
-              '[HOTFIX] Fix auth (#1888)\n\n' +
-              '* feat(auth): set new invite mechanism\n\n' +
-              '* fix(auth): remove otp assignation\n',
-          },
-          {
-            message:
-              '[CHORE] Add renovate (#1889)\n' +
-              '* chore: set renovate config\n' +
-              '* ci: add renovate\n',
-          },
-          {
-            message:
-              '[HOTFIX] Fix CI pipeline (#1889)\n' +
-              '* ci(auth): add integration test step\n' +
-              '* ci: set triggers to all workflows',
-          },
-        ],
-      };
-      checkSquashCommits(true, '72', undefined, undefined, '\\[(CHORE|HOTFIX)\\] [A-Za-z0-9]+');
-      expect(core.info).toBeCalled();
-    });
 
     test('commits are github squash without requiring PR title regex', () => {
       context.payload = {
         commits: [
           {
             message:
-              'Title of my PR (#1716)\n\n' +
+              'feat(auth): implement login mechanism (#1716)\n\n' +
               '* feat(auth): set login endpoint controller\n\n' +
               '* test(auth): add integration test for login endpoint #MAJOR\n\n' +
               '* fix(auth): set secure and http only options\n\n' +
@@ -210,8 +164,54 @@ describe('style', () => {
           },
         ],
       };
-      checkSquashCommits(true, '72', undefined, undefined, undefined);
+      checkCommits(true, '72', undefined);
       expect(core.info).toBeCalled();
     });
   });
+
+  // describe('check squash commits', () => {
+  //   test('payload is not commit', () => {
+  //     context.payload = {};
+  //     checkSquashCommits(false, undefined, undefined, undefined, undefined);
+  //     expect(core.info).not.toBeCalled();
+  //   });
+
+  //   test('commits are no github squash', () => {
+  //     const message = '[HOTFIX] Fix auth\n\n* feat(auth): set new invite mechanism\n';
+  //     context.payload = {
+  //       commits: [{ message }],
+  //     };
+  //     expect(() =>
+  //       checkSquashCommits(false, undefined, undefined, undefined, undefined),
+  //     ).toThrowError(`Commit "${message}" does not seem to be a Github squash.`);
+  //     expect(core.info).not.toBeCalled();
+  //   });
+
+  //   test('commits are github squash that match PR title regex', () => {
+  //     context.payload = {
+  //       commits: [
+  //         {
+  //           message:
+  //             '[HOTFIX] Fix auth (#1888)\n\n' +
+  //             '* feat(auth): set new invite mechanism\n\n' +
+  //             '* fix(auth): remove otp assignation\n',
+  //         },
+  //         {
+  //           message:
+  //             '[CHORE] Add renovate (#1889)\n' +
+  //             '* chore: set renovate config\n' +
+  //             '* ci: add renovate\n',
+  //         },
+  //         {
+  //           message:
+  //             '[HOTFIX] Fix CI pipeline (#1889)\n' +
+  //             '* ci(auth): add integration test step\n' +
+  //             '* ci: set triggers to all workflows',
+  //         },
+  //       ],
+  //     };
+  //     checkSquashCommits(true, '72', undefined, undefined, '\\[(CHORE|HOTFIX)\\] [A-Za-z0-9]+');
+  //     expect(core.info).toBeCalled();
+  //   });
+  // });
 });
