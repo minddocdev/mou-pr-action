@@ -20,14 +20,17 @@ function checkMessage(message: string, pattern: string): boolean {
   return regex.test(message);
 }
 
-function checkPRTitle(prTitle: string, prTitleRegex: string) {
-  if (!checkMessage(prTitle, prTitleRegex)) {
+function checkPRTitle(prTitle: string, prTitleLength?: string, prTitleRegex?: string) {
+  if (prTitleLength && prTitle.length > parseInt(prTitleLength, 10)) {
+    throw new Error(`PR title "${prTitle}" exceeds "${prTitleLength}" character length`);
+  }
+  if (prTitleRegex && !checkMessage(prTitle, prTitleRegex)) {
     throw new Error(`PR title "${prTitle}" does not match regex "${prTitleRegex}"`);
   }
   core.info(`PR title OK: "${prTitle}"`);
 }
 
-export function checkPR(prBodyRegex?: string, prTitleRegex?: string) {
+export function checkPR(prBodyRegex?: string, prTitleLength?: string, prTitleRegex?: string) {
   const { pull_request: pr } = context.payload;
   if (!pr) {
     return;
@@ -40,8 +43,8 @@ export function checkPR(prBodyRegex?: string, prTitleRegex?: string) {
     core.info(`PR body OK: "${pr.body}"`);
   }
 
-  if (prTitleRegex && pr.title) {
-    checkPRTitle(pr.title, prTitleRegex);
+  if (pr.title) {
+    checkPRTitle(pr.title, prTitleLength, prTitleRegex);
   }
 }
 
@@ -78,6 +81,7 @@ export function checkSquashCommits(
   conventionalCommits: boolean,
   commitTitleLength?: string,
   commitTitleRegex?: string,
+  prTitleLength?: string,
   prTitleRegex?: string,
 ) {
   const { commits } = context.payload;
@@ -90,9 +94,7 @@ export function checkSquashCommits(
     if (/.* \(#[0-9]+\)\n+(\* .*\n*)+/gm.test(message)) {
       const messageLines = message.split('* ');
       // Verify commit title to match PR title regex and expected Github squash
-      if (prTitleRegex) {
-        checkPRTitle(messageLines[0].split(' ('), prTitleRegex);
-      }
+      checkPRTitle(messageLines[0].split(' ('), prTitleLength, prTitleRegex);
       // Verify commit titles in body
       messageLines
         .slice(1)

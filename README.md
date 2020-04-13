@@ -74,6 +74,12 @@ e.g:
 - description: The regex that should validate the PR body.
 e.g. `'^.+(Closes|Fixes): \[(JIRA-[0-9])\]$'`
 
+#### `prTitleLength`
+
+- name: prTitleLength
+- required: false
+- description: The maximum line length for the PR title. e.g. `50`.
+
 #### `prTitleRegex`
 
 - name: prTitleRegex

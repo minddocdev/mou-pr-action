@@ -26,15 +26,15 @@ describe('style', () => {
 
     test('with correct body regex', () => {
       context.payload = { pull_request: { body: 'This is my PR body', number: 1, title: '' } };
-      checkPR('.*', undefined);
+      checkPR('.*', undefined, undefined);
       expect(core.info).toBeCalled();
     });
 
-    test('with incorrect title length', () => {
+    test('with incorrect body regex', () => {
       const body = 'This is my PR body';
       const regex = '\\[(CHORE|HOTFIX)\\] [A-Za-z0-9]+';
       context.payload = { pull_request: { body, number: 1, title: '' } };
-      expect(() => checkPR(regex, undefined)).toThrowError(
+      expect(() => checkPR(regex, undefined, undefined)).toThrowError(
         `PR body "${body}" does not match regex "${regex}"`,
       );
       expect(core.info).not.toBeCalled();
@@ -42,7 +42,7 @@ describe('style', () => {
 
     test('with correct title regex', () => {
       context.payload = { pull_request: { body: '', number: 1, title: '[JIRA-123] PR Title' } };
-      checkPR(undefined, '\\[JIRA-[0-9]+\\] [A-Za-z0-9]+');
+      checkPR(undefined, '50', '\\[JIRA-[0-9]+\\] [A-Za-z0-9]+');
       expect(core.info).toBeCalled();
     });
 
@@ -50,8 +50,18 @@ describe('style', () => {
       const title = 'This is my PR title';
       const regex = '\\[(CHORE|HOTFIX)\\] [A-Za-z0-9]+';
       context.payload = { pull_request: { title, number: 1, body: '' } };
-      expect(() => checkPR(undefined, regex)).toThrowError(
+      expect(() => checkPR(undefined, undefined, regex)).toThrowError(
         `PR title "${title}" does not match regex "${regex}"`,
+      );
+      expect(core.info).not.toBeCalled();
+    });
+
+    test('with incorrect title length', () => {
+      const maxLength = '4';
+      const title = '[JIRA-123] PR Title';
+      context.payload = { pull_request: { title, body: '', number: 1 } };
+      expect(() => checkPR(undefined, maxLength, undefined)).toThrowError(
+        `PR title "${title}" exceeds "${maxLength}" character length`,
       );
       expect(core.info).not.toBeCalled();
     });
@@ -139,7 +149,7 @@ describe('style', () => {
   describe('check squash commits', () => {
     test('payload is not commit', () => {
       context.payload = {};
-      checkSquashCommits(false, undefined, undefined, undefined);
+      checkSquashCommits(false, undefined, undefined, undefined, undefined);
       expect(core.info).not.toBeCalled();
     });
 
@@ -148,9 +158,9 @@ describe('style', () => {
       context.payload = {
         commits: [{ message }],
       };
-      expect(() => checkSquashCommits(false, undefined, undefined, undefined)).toThrowError(
-        `Commit "${message}" does not seem to be a Github squash.`,
-      );
+      expect(() =>
+        checkSquashCommits(false, undefined, undefined, undefined, undefined),
+      ).toThrowError(`Commit "${message}" does not seem to be a Github squash.`);
       expect(core.info).not.toBeCalled();
     });
 
@@ -177,7 +187,7 @@ describe('style', () => {
           },
         ],
       };
-      checkSquashCommits(true, '72', undefined, '\\[(CHORE|HOTFIX)\\] [A-Za-z0-9]+');
+      checkSquashCommits(true, '72', undefined, undefined, '\\[(CHORE|HOTFIX)\\] [A-Za-z0-9]+');
       expect(core.info).toBeCalled();
     });
 
@@ -200,7 +210,7 @@ describe('style', () => {
           },
         ],
       };
-      checkSquashCommits(true, '72', undefined, undefined);
+      checkSquashCommits(true, '72', undefined, undefined, undefined);
       expect(core.info).toBeCalled();
     });
   });

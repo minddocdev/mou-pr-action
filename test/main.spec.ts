@@ -19,6 +19,7 @@ describe('run', () => {
   const labels = 'mylabel: myglob';
   // PR config
   const prBodyRegex = '^.+(Closes|Fixes): [(JIRA-[0-9])]$';
+  const prTitleLength = '50';
   const prTitleRegex = '[(JIRA-[0-9]+|CHORE|HOTFIX)] [A-Za-z0-9]+$';
   // Github token
   const token = 'faketoken';
@@ -33,6 +34,8 @@ describe('run', () => {
           return mockLabels;
         case 'prBodyRegex':
           return prBodyRegex;
+        case 'prTitleLength':
+          return prTitleLength;
         case 'prTitleRegex':
           return prTitleRegex;
         case 'squashAndMergeBranch':
@@ -67,8 +70,13 @@ describe('run', () => {
       await run();
 
       expect(checkCommits).not.toBeCalled();
-      expect(checkSquashCommits)
-        .toBeCalledWith(false, commitTitleLength, commitTitleRegex, prTitleRegex);
+      expect(checkSquashCommits).toBeCalledWith(
+        false,
+        commitTitleLength,
+        commitTitleRegex,
+        prTitleLength,
+        prTitleRegex,
+      );
       expect(labelPR).not.toBeCalled();
       expect(checkPR).not.toBeCalled();
       expect(setFailed).not.toBeCalled();
@@ -87,7 +95,7 @@ describe('run', () => {
     expect(checkCommits).not.toBeCalled();
     expect(checkSquashCommits).not.toBeCalled();
     expect(labelPR).toBeCalledWith(expect.any(GitHub), labelGlobs);
-    expect(checkPR).toBeCalledWith(prBodyRegex, prTitleRegex);
+    expect(checkPR).toBeCalledWith(prBodyRegex, prTitleLength, prTitleRegex);
     expect(setFailed).not.toBeCalled();
   });
 

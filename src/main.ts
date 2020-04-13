@@ -39,6 +39,7 @@ function getLabelerConfig() {
 export async function run() {
   try {
     const prTitleRegex = core.getInput('prTitleRegex', { required: false });
+    const prTitleLength = core.getInput('prTitleLength', { required: false });
     const client = new GitHub(core.getInput('token', { required: true }));
     const { eventName } = context;
     switch (eventName) {
@@ -53,6 +54,7 @@ export async function run() {
             conventionalCommits,
             commitTitleLength,
             commitTitleRegex,
+            prTitleLength,
             prTitleRegex,
           );
         } else {
@@ -62,7 +64,7 @@ export async function run() {
       }
       case 'pull_request': {
         await labelPR(client, getLabelerConfig());
-        checkPR(core.getInput('prBodyRegex', { required: false }), prTitleRegex);
+        checkPR(core.getInput('prBodyRegex', { required: false }), prTitleLength, prTitleRegex);
         break;
       }
       default: {
