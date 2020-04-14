@@ -3,7 +3,7 @@ import { context } from '@actions/github';
 
 function validateConventionalCommit(message: string) {
   // eslint-disable-next-line no-useless-escape
-  const match = /^(\w*)(\(([\w\$\.\*/-]+)\))?!?\: (.*)$/gm.exec(message);
+  const match = /^(\w*)(\(([\w\$\.\*/-]*)\))?!?\: (.*)$/gm.exec(message);
   if (!match) {
     throw new Error(`Commit message "${message}" does not match "<type>(<scope>): <subject>"`);
   }
