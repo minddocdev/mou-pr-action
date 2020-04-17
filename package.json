@@ -24,6 +24,7 @@
   "dependencies": {
     "@actions/core": "^1.2.3",
     "@actions/github": "^2.1.1",
+    "@commitlint/lint": "^8.3.5",
     "js-yaml": "^3.13.1",
     "minimatch": "^3.0.4"
   },
