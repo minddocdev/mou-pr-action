@@ -41,5 +41,5 @@ inputs:
     description: "The token to access Github's API"
     required: true
 runs:
-  using: "node12"
+  using: "node16"
   main: "dist/run.js"
