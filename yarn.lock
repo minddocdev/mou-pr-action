@@ -5838,6 +5838,7 @@ fsevents@^2.1.2:
     minimatch: ^3.0.4
     prettier: ^1.19.1
     prettier-eslint: ^9.0.1
+    slash: ^5.1.0
     ts-jest: ^25.2.1
     ts-loader: ^6.2.1
     tsconfig-paths-webpack-plugin: ^3.2.0
@@ -7362,6 +7363,13 @@ resolve@1.1.7:
   version: 3.0.0
   resolution: "slash@npm:3.0.0"
   checksum: 2/fc3e8597d822ee3ba6cd76e9b001cd5be315f9b81c3a03a29bb611c003d1484e3b29a9e7bc020298fa669b585ff7c9268f44513f60c186216eb6af3111a3e838
+  languageName: node
+  linkType: hard
+
+"slash@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "slash@npm:5.1.0"
+  checksum: 2/ea80668a9e1df1d65f46a0f223330f98f0248bcada788ba5b06884e54f37bc11082d3a455ce6bd16ff50986ceb363906c8ab985c235000f1c03a28aa65c1cf5a
   languageName: node
   linkType: hard
 
