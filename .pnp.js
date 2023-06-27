@@ -65,7 +65,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["minimatch", "npm:3.0.4"],
             ["prettier", "npm:1.19.1"],
             ["prettier-eslint", "npm:9.0.1"],
-            ["react", "npm:18.2.0"],
             ["ts-jest", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:25.3.1"],
             ["ts-loader", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:6.2.2"],
             ["tsconfig-paths-webpack-plugin", "npm:3.2.0"],
@@ -6597,7 +6596,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["minimatch", "npm:3.0.4"],
             ["prettier", "npm:1.19.1"],
             ["prettier-eslint", "npm:9.0.1"],
-            ["react", "npm:18.2.0"],
             ["ts-jest", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:25.3.1"],
             ["ts-loader", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:6.2.2"],
             ["tsconfig-paths-webpack-plugin", "npm:3.2.0"],
@@ -7632,16 +7630,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/quick-lru-npm-1.1.0-c6573eb93f-2.zip/node_modules/quick-lru/",
           "packageDependencies": [
             ["quick-lru", "npm:1.1.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["react", [
-        ["npm:18.2.0", {
-          "packageLocation": "./.yarn/cache/react-npm-18.2.0-1eae08fee2-2.zip/node_modules/react/",
-          "packageDependencies": [
-            ["react", "npm:18.2.0"],
-            ["loose-envify", "npm:1.4.0"]
           ],
           "linkType": "HARD",
         }]

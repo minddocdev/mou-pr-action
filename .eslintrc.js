@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest'],
   extends: [
-    'airbnb-typescript',
+    'airbnb-typescript/base',
     'plugin:eslint-comments/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
