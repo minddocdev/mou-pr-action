@@ -5804,9 +5804,9 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"mou-release-action@workspace:.":
+"mou-pr-action@workspace:.":
   version: 0.0.0-use.local
-  resolution: "mou-release-action@workspace:."
+  resolution: "mou-pr-action@workspace:."
   dependencies:
     "@actions/core": ^1.2.3
     "@actions/github": ^2.1.1
