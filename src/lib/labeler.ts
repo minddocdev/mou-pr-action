@@ -1,8 +1,8 @@
 import * as core from '@actions/core';
-import { context, GitHub } from '@actions/github';
+import { context } from '@actions/github';
+import { Octokit } from '@octokit/rest';
 import { Minimatch } from 'minimatch';
-
-async function addLabels(client: GitHub, labels: string[], prNumber: number) {
+async function addLabels(client: Octokit, labels: string[], prNumber: number) {
   const { owner, repo } = context.repo;
   await client.issues.addLabels({
     labels,
@@ -12,7 +12,7 @@ async function addLabels(client: GitHub, labels: string[], prNumber: number) {
   });
 }
 
-async function getChangedFiles(client: GitHub, prNumber: number): Promise<string[]> {
+async function getChangedFiles(client: Octokit, prNumber: number): Promise<string[]> {
   const { owner, repo } = context.repo;
   const listFilesResponse = await client.pulls.listFiles({
     owner,
@@ -20,10 +20,10 @@ async function getChangedFiles(client: GitHub, prNumber: number): Promise<string
     pull_number: prNumber,
   });
 
-  const changedFiles = listFilesResponse.data.map(f => f.filename);
+  const changedFiles: string[] = listFilesResponse.data.map((f) => f.filename);
 
   core.debug('Found changed files:');
-  changedFiles.forEach(file => core.debug(`changed file: ${file}`));
+  changedFiles.forEach((file) => core.debug(`changed file: ${file}`));
   return changedFiles;
 }
 
@@ -41,7 +41,7 @@ function checkGlob(changedFiles: string[], glob: string): boolean {
   return false;
 }
 
-export async function labelPR(client: GitHub, labelGlobs: Map<string, string[]>) {
+export async function labelPR(client: Octokit, labelGlobs: Map<string, string[]>) {
   const { pull_request: pr } = context.payload;
   if (!pr) {
     return;

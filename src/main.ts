@@ -1,9 +1,10 @@
 import * as core from '@actions/core';
-import { context, GitHub } from '@actions/github';
+import { context } from '@actions/github';
 import * as yaml from 'js-yaml';
 
 import { labelPR } from './lib/labeler';
 import { checkCommits, checkPR } from './lib/style';
+import { Octokit } from '@octokit/rest';
 
 function getLabelerConfig() {
   const rawLabels = core.getInput('labels', { required: false });
@@ -23,7 +24,7 @@ function getLabelerConfig() {
   }
 
   const labelGlobs: Map<string, string[]> = new Map();
-  Object.keys(labelConfig!).forEach(label => {
+  Object.keys(labelConfig!).forEach((label) => {
     if (typeof labelConfig![label] === 'string') {
       labelGlobs.set(label, [labelConfig![label]]);
     } else if (labelConfig![label] instanceof Array) {
@@ -40,7 +41,7 @@ export async function run() {
   try {
     const prTitleRegex = core.getInput('prTitleRegex', { required: false });
     const prTitleLength = core.getInput('prTitleLength', { required: false });
-    const client = new GitHub(core.getInput('token', { required: true }));
+    const client = new Octokit({ auth: core.getInput('token', { required: true }) });
     const { eventName } = context;
     switch (eventName) {
       case 'push': {
