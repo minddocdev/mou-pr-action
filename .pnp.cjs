@@ -32,7 +32,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@actions/github", "npm:5.1.1"],\
             ["@commitlint/lint", "npm:17.7.0"],\
             ["@octokit/rest", "npm:20.0.2"],\
-            ["@octokit/types", "npm:12.0.0"],\
             ["@types/eslint-plugin-prettier", "npm:3.1.1"],\
             ["@types/jest", "npm:29.5.5"],\
             ["@types/js-yaml", "npm:4.0.6"],\
@@ -7421,7 +7420,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@actions/github", "npm:5.1.1"],\
             ["@commitlint/lint", "npm:17.7.0"],\
             ["@octokit/rest", "npm:20.0.2"],\
-            ["@octokit/types", "npm:12.0.0"],\
             ["@types/eslint-plugin-prettier", "npm:3.1.1"],\
             ["@types/jest", "npm:29.5.5"],\
             ["@types/js-yaml", "npm:4.0.6"],\

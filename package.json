@@ -27,7 +27,6 @@
     "@actions/github": "^5.1.1",
     "@commitlint/lint": "^17.7.0",
     "@octokit/rest": "^20.0.2",
-    "@octokit/types": "^12.0.0",
     "js-yaml": "^4.1.0",
     "minimatch": "^9.0.3"
   },
