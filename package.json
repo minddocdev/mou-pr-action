@@ -1,8 +1,8 @@
 {
-  "name": "mou-release-action",
+  "name": "mou-pr-action",
   "version": "0.0.0",
   "private": true,
-  "description": "Github Action that creates releases",
+  "description": "Github Action that checkes PR",
   "main": "src/index.ts",
   "scripts": {
     "build": "webpack --progress",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minddocdev/mou-release-action.git"
+    "url": "git+https://github.com/minddocdev/mou-pr-action.git"
   },
   "keywords": [
     "actions",
@@ -22,24 +22,22 @@
   "author": "MindDoc Health GmbH",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.10.1",
     "@actions/github": "^2.1.1",
-    "@commitlint/lint": "^8.3.5",
-    "js-yaml": "^3.13.1",
-    "minimatch": "^3.0.4"
+    "@commitlint/lint": "^17.7.0",
+    "js-yaml": "^4.1.0",
+    "minimatch": "^9.0.3"
   },
   "devDependencies": {
-    "@types/eslint-plugin-prettier": "^2.2.0",
-    "@types/jest": "^25.2.3",
-    "@types/js-yaml": "^3.12.3",
-    "@types/node": "^13.7.7",
-    "@types/prettier": "1.19.0",
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "@typescript-eslint/parser": "^2.22.0",
-    "@yarnpkg/pnpify": "^2.0.0-rc.18",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-typescript": "^7.0.0",
-    "eslint-config-prettier": "^6.10.0",
+    "@types/eslint-plugin-prettier": "^3.1.1",
+    "@types/jest": "^29.5.5",
+    "@types/js-yaml": "^4.0.6",
+    "@types/node": "^18.18.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-node": "^0.3.3",
     "eslint-plugin-eslint-comments": "^3.1.2",
     "eslint-plugin-import": "^2.20.1",
@@ -49,21 +47,25 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "husky": "^4.2.3",
-    "jest": "^25.1.0",
-    "jest-config": "^25.1.0",
-    "jest-environment-node": "^25.1.0",
+    "jest": "^29.7.0",
+    "jest-config": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
-    "ts-jest": "^25.2.1",
-    "ts-loader": "^6.2.1",
-    "tsconfig-paths-webpack-plugin": "^3.2.0",
-    "typescript": "^3.8.3",
-    "webpack": "^5.0.0-beta.14",
-    "webpack-cli": "^3.3.11"
+    "ts-jest": "^29.1.1",
+    "ts-loader": "^9.4.4",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "peerDependencies": {
+    "typanion": "^3.8.0"
   },
   "husky": {
     "hooks": {
       "pre-commit": "yarn build"
     }
-  }
+  },
+  "packageManager": "yarn@3.6.3"
 }

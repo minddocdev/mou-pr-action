@@ -1,9 +1,9 @@
-name: "MOU PR"
-description: "Check PR style and its commits"
-author: "MindDoc Health GmbH"
+name: 'MOU PR'
+description: 'Check PR style and its commits'
+author: 'MindDoc Health GmbH'
 branding:
-  icon: "cloud"
-  color: "blue"
+  icon: 'cloud'
+  color: 'blue'
 inputs:
   commitTitleLength:
     description: The maximum line length for the commit title. e.g. `72`.
@@ -16,7 +16,7 @@ inputs:
   conventionalCommits:
     description: Check for conventional style commits. See https://www.conventionalcommits.org/
     required: false
-    default: "false"
+    default: 'false'
   labels:
     description: >-
       The YAML or JSON map of labels with the list of file matchers.
@@ -41,5 +41,5 @@ inputs:
     description: "The token to access Github's API"
     required: true
 runs:
-  using: "node16"
-  main: "dist/run.js"
+  using: 'node18'
+  main: 'dist/run.js'

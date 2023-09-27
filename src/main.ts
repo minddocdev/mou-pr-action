@@ -8,7 +8,7 @@ import { checkCommits, checkPR } from './lib/style';
 function getLabelerConfig() {
   const rawLabels = core.getInput('labels', { required: false });
   core.debug(`Parsing raw labels config '${rawLabels}'...`);
-  let labelConfig: {};
+  let labelConfig: unknown;
   try {
     // Try JSON first
     labelConfig = JSON.parse(rawLabels);
@@ -16,18 +16,18 @@ function getLabelerConfig() {
   } catch (jsonError) {
     // Try YAML format
     try {
-      labelConfig = yaml.safeLoad(rawLabels);
+      labelConfig = yaml.load(rawLabels);
     } catch (yamlError) {
       throw new Error(`Unable to parse labels. Found content: "${rawLabels}"`);
     }
   }
 
   const labelGlobs: Map<string, string[]> = new Map();
-  Object.keys(labelConfig).forEach(label => {
-    if (typeof labelConfig[label] === 'string') {
-      labelGlobs.set(label, [labelConfig[label]]);
-    } else if (labelConfig[label] instanceof Array) {
-      labelGlobs.set(label, labelConfig[label]);
+  Object.keys(labelConfig!).forEach(label => {
+    if (typeof labelConfig![label] === 'string') {
+      labelGlobs.set(label, [labelConfig![label]]);
+    } else if (labelConfig![label] instanceof Array) {
+      labelGlobs.set(label, labelConfig![label]);
     } else {
       throw Error(`Unexpected type for label "${label}" (should be string or array of globs)`);
     }
@@ -60,7 +60,7 @@ export async function run() {
         throw new Error(`Unsupported "${eventName}" event.`);
       }
     }
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message);
   }
 }
