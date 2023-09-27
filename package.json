@@ -67,5 +67,6 @@
     "hooks": {
       "pre-commit": "yarn build"
     }
-  }
+  },
+  "packageManager": "yarn@3.6.3"
 }
