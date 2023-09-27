@@ -1,5 +1,6 @@
 import { getInput, setFailed } from '@actions/core';
-import { context, GitHub } from '@actions/github';
+import { context } from '@actions/github';
+import { Octokit } from '@octokit/rest';
 
 import { labelPR } from '@minddocdev/mou-pr-action/lib/labeler';
 import { checkCommits, checkPR } from '@minddocdev/mou-pr-action/lib/style';
@@ -68,7 +69,7 @@ describe('run', () => {
     await run();
 
     expect(checkCommits).not.toBeCalled();
-    expect(labelPR).toBeCalledWith(expect.any(GitHub), labelGlobs);
+    expect(labelPR).toBeCalledWith(expect.any(Octokit), labelGlobs);
     expect(checkPR).toBeCalledWith(prBodyRegex, prTitleLength, prTitleRegex);
     expect(setFailed).not.toBeCalled();
   });
@@ -100,7 +101,9 @@ describe('run', () => {
 
   test('input error', async () => {
     const errorMsg = 'fake';
-    (getInput as jest.Mock).mockImplementationOnce(() => { throw new Error(errorMsg); });
+    (getInput as jest.Mock).mockImplementationOnce(() => {
+      throw new Error(errorMsg);
+    });
 
     await run();
     expect(setFailed).toBeCalledWith(errorMsg);
