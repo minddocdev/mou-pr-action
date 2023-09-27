@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v1.2.0
+        uses: actions/checkout@v4.1.0
       - name: Lint code
         run: yarn lint
       - name: Test code
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v1.2.0
+        uses: actions/checkout@v4.1.0
       - name: Check commits
         uses: minddocdev/mou-pr-action@master
         with:
