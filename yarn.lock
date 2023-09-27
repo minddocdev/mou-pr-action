@@ -5789,7 +5789,7 @@ __metadata:
     webpack: ^5.88.2
     webpack-cli: ^5.1.4
   peerDependencies:
-    typanion: ^3.8.0
+    typanion: ^3.14.0
   languageName: unknown
   linkType: soft
 
