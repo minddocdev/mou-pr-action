@@ -1,8 +1,8 @@
 {
-  "name": "mou-release-action",
+  "name": "mou-pr-action",
   "version": "0.0.0",
   "private": true,
-  "description": "Github Action that creates releases",
+  "description": "Github Action that checkes PR",
   "main": "src/index.ts",
   "scripts": {
     "build": "webpack --progress",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minddocdev/mou-release-action.git"
+    "url": "git+https://github.com/minddocdev/mou-pr-action.git"
   },
   "keywords": [
     "actions",
