@@ -32,7 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@actions/github", "npm:5.1.1"],\
             ["@commitlint/lint", "npm:17.7.0"],\
             ["@octokit/rest", "npm:20.0.2"],\
-            ["@types/eslint-plugin-prettier", "npm:3.1.1"],\
+            ["@types/eslint-plugin-prettier", "npm:3.1.2"],\
             ["@types/jest", "npm:29.5.5"],\
             ["@types/js-yaml", "npm:4.0.7"],\
             ["@types/node", "npm:18.18.5"],\
@@ -1939,10 +1939,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/eslint-plugin-prettier", [\
-        ["npm:3.1.1", {\
-          "packageLocation": "./.yarn/cache/@types-eslint-plugin-prettier-npm-3.1.1-52807530eb-a98c2ecef4.zip/node_modules/@types/eslint-plugin-prettier/",\
+        ["npm:3.1.2", {\
+          "packageLocation": "./.yarn/cache/@types-eslint-plugin-prettier-npm-3.1.2-fc98f7be8f-666135c19a.zip/node_modules/@types/eslint-plugin-prettier/",\
           "packageDependencies": [\
-            ["@types/eslint-plugin-prettier", "npm:3.1.1"],\
+            ["@types/eslint-plugin-prettier", "npm:3.1.2"],\
             ["@types/eslint", "npm:8.44.3"]\
           ],\
           "linkType": "HARD"\
@@ -7443,7 +7443,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@actions/github", "npm:5.1.1"],\
             ["@commitlint/lint", "npm:17.7.0"],\
             ["@octokit/rest", "npm:20.0.2"],\
-            ["@types/eslint-plugin-prettier", "npm:3.1.1"],\
+            ["@types/eslint-plugin-prettier", "npm:3.1.2"],\
             ["@types/jest", "npm:29.5.5"],\
             ["@types/js-yaml", "npm:4.0.7"],\
             ["@types/node", "npm:18.18.5"],\
