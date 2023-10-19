@@ -35,7 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-plugin-prettier", "npm:3.1.2"],\
             ["@types/jest", "npm:29.5.6"],\
             ["@types/js-yaml", "npm:4.0.8"],\
-            ["@types/node", "npm:18.18.5"],\
+            ["@types/node", "npm:18.18.6"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:6.8.0"],\
             ["@typescript-eslint/parser", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:6.8.0"],\
             ["eslint", "npm:8.51.0"],\
@@ -2055,10 +2055,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/node", [\
-        ["npm:18.18.5", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-18.18.5-40df2aaaa2-fc8c9b2bf2.zip/node_modules/@types/node/",\
+        ["npm:18.18.6", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.18.6-67880ca2e3-a847639b84.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:18.18.5"]\
+            ["@types/node", "npm:18.18.6"]\
           ],\
           "linkType": "HARD"\
         }],\
@@ -6363,7 +6363,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.23.0"],\
             ["@jest/test-sequencer", "npm:29.7.0"],\
             ["@jest/types", "npm:29.6.3"],\
-            ["@types/node", "npm:18.18.5"],\
+            ["@types/node", "npm:18.18.6"],\
             ["@types/ts-node", null],\
             ["babel-jest", "virtual:c3b59b4fffc5519c26608bcbefd43163f8bc60e2c9a5eca72d04aa9a2cf5dc7c53d450b8ba7a9a225878faed875876f563974afcf6b6bf8f4a5713ba0a9bcdbb#npm:29.7.0"],\
             ["chalk", "npm:4.1.2"],\
@@ -7446,7 +7446,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-plugin-prettier", "npm:3.1.2"],\
             ["@types/jest", "npm:29.5.6"],\
             ["@types/js-yaml", "npm:4.0.8"],\
-            ["@types/node", "npm:18.18.5"],\
+            ["@types/node", "npm:18.18.6"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:6.8.0"],\
             ["@typescript-eslint/parser", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:6.8.0"],\
             ["eslint", "npm:8.51.0"],\
