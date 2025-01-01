@@ -6310,7 +6310,7 @@ __metadata:
     js-yaml: ^4.1.0
     minimatch: ^9.0.3
     prettier: ^3.4.2
-    prettier-eslint: ^16.1.1
+    prettier-eslint: ^16.3.0
     ts-jest: ^29.1.1
     ts-loader: ^9.5.1
     tsconfig-paths-webpack-plugin: ^4.1.0
@@ -6785,9 +6785,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-eslint@npm:^16.1.1":
-  version: 16.1.1
-  resolution: "prettier-eslint@npm:16.1.1"
+"prettier-eslint@npm:^16.3.0":
+  version: 16.3.0
+  resolution: "prettier-eslint@npm:16.3.0"
   dependencies:
     "@typescript-eslint/parser": ^6.7.5
     common-tags: ^1.4.0
@@ -6801,7 +6801,15 @@ __metadata:
     require-relative: ^0.8.7
     typescript: ^5.2.2
     vue-eslint-parser: ^9.1.0
-  checksum: 251761338f7a8515e170e868d7ce6f2b4d7d888ee41875b710eb4f7a5cc80fd88d7a5a8eb6e0ab1888d0b8989f22a45dcf572b044dd8533fcce4d71b270cf53a
+  peerDependencies:
+    prettier-plugin-svelte: ^3.0.0
+    svelte-eslint-parser: "*"
+  peerDependenciesMeta:
+    prettier-plugin-svelte:
+      optional: true
+    svelte-eslint-parser:
+      optional: true
+  checksum: 4b2a7006fb237cc95e307ed0b0aa6a4e84bba975b7899c5279fdd149edb025ac000544049a329dd5e214edd219c820e71069141da31cf5c5da3dc004ca81b3f7
   languageName: node
   linkType: hard
 
