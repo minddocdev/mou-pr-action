@@ -59,7 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier-eslint", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:16.3.0"],\
             ["ts-jest", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:29.2.5"],\
             ["ts-loader", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:9.5.1"],\
-            ["tsconfig-paths-webpack-plugin", "npm:4.1.0"],\
+            ["tsconfig-paths-webpack-plugin", "npm:4.2.0"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:5.89.0"],\
             ["webpack-cli", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:5.1.4"]\
@@ -8009,7 +8009,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier-eslint", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:16.3.0"],\
             ["ts-jest", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:29.2.5"],\
             ["ts-loader", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:9.5.1"],\
-            ["tsconfig-paths-webpack-plugin", "npm:4.1.0"],\
+            ["tsconfig-paths-webpack-plugin", "npm:4.2.0"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["webpack", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:5.89.0"],\
             ["webpack-cli", "virtual:d22e68ffeb73a2cfb03cd0b3cc0f1ee72bda7d70b7016d65cda6a85d9a6cecfbf095d52ff5a054b89256bf08e90872cdf558260cd1257d9a71dc761aa68ca1a9#npm:5.1.4"]\
@@ -9957,12 +9957,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["tsconfig-paths-webpack-plugin", [\
-        ["npm:4.1.0", {\
-          "packageLocation": "./.yarn/cache/tsconfig-paths-webpack-plugin-npm-4.1.0-5bffe3ebda-f6e9a8a407.zip/node_modules/tsconfig-paths-webpack-plugin/",\
+        ["npm:4.2.0", {\
+          "packageLocation": "./.yarn/cache/tsconfig-paths-webpack-plugin-npm-4.2.0-2a177d83ba-b35e4da5fb.zip/node_modules/tsconfig-paths-webpack-plugin/",\
           "packageDependencies": [\
-            ["tsconfig-paths-webpack-plugin", "npm:4.1.0"],\
+            ["tsconfig-paths-webpack-plugin", "npm:4.2.0"],\
             ["chalk", "npm:4.1.2"],\
             ["enhanced-resolve", "npm:5.15.0"],\
+            ["tapable", "npm:2.2.1"],\
             ["tsconfig-paths", "npm:4.2.0"]\
           ],\
           "linkType": "HARD"\
