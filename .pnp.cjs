@@ -28,7 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@actions/core", "npm:1.10.1"],\
+            ["@actions/core", "npm:1.11.1"],\
             ["@actions/github", "npm:5.1.1"],\
             ["@commitlint/lint", "npm:17.8.1"],\
             ["@octokit/rest", "npm:20.0.2"],\
@@ -77,12 +77,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@actions/core", [\
-        ["npm:1.10.1", {\
-          "packageLocation": "./.yarn/cache/@actions-core-npm-1.10.1-3cb1000b4d-96524c2725.zip/node_modules/@actions/core/",\
+        ["npm:1.11.1", {\
+          "packageLocation": "./.yarn/cache/@actions-core-npm-1.11.1-ad090a2026-9ac7a3e0b4.zip/node_modules/@actions/core/",\
           "packageDependencies": [\
-            ["@actions/core", "npm:1.10.1"],\
-            ["@actions/http-client", "npm:2.1.1"],\
-            ["uuid", "npm:8.3.2"]\
+            ["@actions/core", "npm:1.11.1"],\
+            ["@actions/exec", "npm:1.1.1"],\
+            ["@actions/http-client", "npm:2.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@actions/exec", [\
+        ["npm:1.1.1", {\
+          "packageLocation": "./.yarn/cache/@actions-exec-npm-1.1.1-90973d2f96-d976e66dd5.zip/node_modules/@actions/exec/",\
+          "packageDependencies": [\
+            ["@actions/exec", "npm:1.1.1"],\
+            ["@actions/io", "npm:1.1.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -106,6 +116,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@actions/http-client", "npm:2.1.1"],\
             ["tunnel", "npm:0.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@actions/io", [\
+        ["npm:1.1.3", {\
+          "packageLocation": "./.yarn/cache/@actions-io-npm-1.1.3-82d1cf012b-42841ac2b8.zip/node_modules/@actions/io/",\
+          "packageDependencies": [\
+            ["@actions/io", "npm:1.1.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7978,7 +7997,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["mou-pr-action", "workspace:."],\
-            ["@actions/core", "npm:1.10.1"],\
+            ["@actions/core", "npm:1.11.1"],\
             ["@actions/github", "npm:5.1.1"],\
             ["@commitlint/lint", "npm:17.8.1"],\
             ["@octokit/rest", "npm:20.0.2"],\
@@ -10303,15 +10322,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-474acf1146.zip/node_modules/util-deprecate/",\
           "packageDependencies": [\
             ["util-deprecate", "npm:1.0.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["uuid", [\
-        ["npm:8.3.2", {\
-          "packageLocation": "./.yarn/cache/uuid-npm-8.3.2-eca0baba53-5575a8a75c.zip/node_modules/uuid/",\
-          "packageDependencies": [\
-            ["uuid", "npm:8.3.2"]\
           ],\
           "linkType": "HARD"\
         }]\
