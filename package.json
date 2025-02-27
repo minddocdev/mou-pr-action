@@ -59,7 +59,7 @@
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.7.3",
     "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^6.0.1"
   },
   "peerDependencies": {
     "typanion": "^3.14.0"
